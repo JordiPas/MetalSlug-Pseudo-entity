@@ -1,16 +1,20 @@
 var gameFacade = null;
 var phaser = new Phaser.Game(
-    950,
-    635,
+    947,
+    631,
     Phaser.AUTO, 
     'mainContent',
     {
         preload: function() {
             
+            //phaser.stage.backgroundColor = "#99cc33";
+            phaser.load.image('enemy', 'assets/enemy.png');
+            phaser.load.spritesheet('player', 'assets/CorrerSlug.png', 51, 53);
             phaser.load.tilemap('casa', 'assets/TiledMetalSlug.json', null, Phaser.Tilemap.TILED_JSON);
             phaser.load.image('background', 'assets/Casa.png');            
-            phaser.load.image('tileset', 'assets/tileset.png');
-            phaser.load.spritesheet('player', 'assets/CorrerSlug.png', 32, 48);
+            phaser.load.image('Muro', 'assets/tileset.png');
+            
+            
             
         },
         

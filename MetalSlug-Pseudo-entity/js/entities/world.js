@@ -15,12 +15,13 @@ var World = function() {
     };
     
     var addTilesets = function() {
-        mMapa.addTilesetImage('tileset');
+        mMapa.addTilesetImage('Muro');
     };
     
     var createLayer = function() {
         mLayer = mMapa.createLayer('Capa de Patrones 1');
         mLayer.resizeWorld();
+        //mMapa.setCollisionBetween(1,4);
         mMapa.setCollision(1);
     };
     

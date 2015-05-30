@@ -2,8 +2,10 @@ var GameFacade = function() {
     var mSelf = this;
     var mWorld = null;
     var mPlayer = null;
+    var mEnemies = null;
     
     this.update = function() {
+        mEnemies.update();
         mPlayer.update();
     };
     
@@ -16,6 +18,7 @@ var GameFacade = function() {
         
         mWorld = new World();
         mPlayer = new Player(mWorld.getPhysicsReference());
+        mEnemies = new Enemies(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference());
         mPlayer.registerListener(mSelf);
        
     })();

@@ -25,6 +25,11 @@ var Player = function(worldReference) {
         }
     };
     
+    this.getPhysicsReference = function() {
+        return mSprite;
+    };
+    
+    
     this.registerListener = function(listener) {
         mListeners.push(listener);
     }
@@ -42,7 +47,7 @@ var Player = function(worldReference) {
         mSprite.animations.play('left');
     };
     
-    var onPressRght = function() {
+    var onPressRight = function() {
         mSprite.body.velocity.x = 150;
         mSprite.animations.play('right');
     };
@@ -64,8 +69,10 @@ var Player = function(worldReference) {
 //Constructor
     (function() {
         mSprite = phaser.add.sprite(32, phaser.world.height - 150, 'player');
-        mSprite.animations.add('left', [0, 1, 2, 3, 4, 5], 53, true);
-        mSprite.animations.add('right', [7, 8, 9, 10, 11, 12], 53, true);
+        mSprite.animations.add('left', [0, 1, 2, 3, 4, 5], 20, true);
+        mSprite.animations.add('right', [7, 8, 9, 10, 11, 12], 20, true);
+        mSprite.scale.setTo(1.25, 1.5);
+        //phaser.camera.follow(mSprite);
         
         mCursor = phaser.input.keyboard.createCursorKeys();
         
