@@ -25,7 +25,7 @@ var Player = function(worldReference) {
         }
     };
     
-    this.regiterListener = function(listener) {
+    this.registerListener = function(listener) {
         mListeners.push(listener);
     }
     
@@ -48,9 +48,10 @@ var Player = function(worldReference) {
     };
     
     var onPressUp = function() {
-        if(mSprite.body.touching.down) {
+        mSprite.body.velocity.y = -150;
+        /*if(mSprite.body.touching.down) {
             mSprite.body.velocity.y = -350;
-        }
+        }*/
     };
     
     var onNoDirectionPressed = function() {
