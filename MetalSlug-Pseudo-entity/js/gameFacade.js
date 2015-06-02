@@ -5,6 +5,7 @@ var GameFacade = function() {
     var mEnemies = null;
     
     this.update = function() {
+        mLaser.update();
         mEnemies.update();
         mPlayer.update();
     };
@@ -19,6 +20,7 @@ var GameFacade = function() {
         mWorld = new World();
         mPlayer = new Player(mWorld.getPhysicsReference());
         mEnemies = new Enemies(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference());
+        mLaser = new Disparar(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(),mPlayer.getPhysicsReference());
         mPlayer.registerListener(mSelf);
        
     })();
