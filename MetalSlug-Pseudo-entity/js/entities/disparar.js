@@ -33,16 +33,16 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
     
     var createShot = function() {
         
-        shoots = phaser.add.group();
-        shoots.enableBody = true;
-        shoots.physicsBodyType = Phaser.Physics.ARCADE;
-        shoots.setAll('anchor.x', 0,5);
-        shoots.setAll('anchor.y', 1);
-        shoots.setAll('outOfBoundSkill', true);
-        shoots.setAll('checkWorldBounds', true);
-        shoots = shoots.createMultiple(100,'laser');
+        //shoots = phaser.add.group();
+        //shoots.enableBody = true;
+        //shoots.physicsBodyType = Phaser.Physics.ARCADE;
+        //shoots.setAll('anchor.x', 0,5);
+        //shoots.setAll('anchor.y', 1);
+        //shoots.setAll('outOfBoundSkill', true);
+        //shoots.setAll('checkWorldBounds', true);
+        //shoots = shoots.createMultiple(100,'laser');
         //shoots = shoot.create(mSprite.x, mSprite.y, 'laser');
-        //shoots.scale.setTo(0.3, 0.7);
+        shoots.scale.setTo(0.3, 0.7);
         enablePhysics();
         
     };
@@ -100,11 +100,7 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
         shoots.setAll('anchor.y', 1);
         shoots.setAll('outOfBoundSkill', true);
         shoots.setAll('checkWorldBounds', true);
-        
-        
-        
-        
-        
+         
         emitter.makeParticles('pixel');
         emitter.setYSpeed(-150, 150);
         emitter.setXSpeed(-150, 150);
