@@ -20,7 +20,7 @@ var GameFacade = function() {
         mWorld = new World();
         mPlayer = new Player(mWorld.getPhysicsReference());
         mEnemies = new Enemies(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference());
-        mLaser = new Disparar(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(),mPlayer.getPhysicsReference());
+        mLaser = new Disparar(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(), mEnemies.getPhysicsReference());
         mPlayer.registerListener(mSelf);
        
     })();

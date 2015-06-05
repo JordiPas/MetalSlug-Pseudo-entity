@@ -53,10 +53,9 @@ var Player = function(worldReference) {
     };
     
     var onPressUp = function() {
-        mSprite.body.velocity.y = -150;
-        /*if(mSprite.body.touching.down) {
-            mSprite.body.velocity.y = -350;
-        }*/
+        if(mSprite.body.onFloor()){
+            mSprite.body.velocity.y = -300;
+        }
     };
     
     var onNoDirectionPressed = function() {
