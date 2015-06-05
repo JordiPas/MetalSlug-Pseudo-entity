@@ -32,7 +32,7 @@ var Enemies = function(worldReference, playerReference) {
 
         total++;
 
-    }
+    };
     
         //EnemyGroup = phaser.add.group();
         //EnemyGroup.enableBody = true;
@@ -84,9 +84,6 @@ var Enemies = function(worldReference, playerReference) {
                 enablePhysics();
 
                 Enemy.push(enemy);
-            
-            
-        }
 
     };
     
@@ -134,3 +131,4 @@ var Enemies = function(worldReference, playerReference) {
             nextEnemy = phaser.time.now;
         }*/
     })();
+};
