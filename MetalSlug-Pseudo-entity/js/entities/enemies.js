@@ -85,7 +85,7 @@ var Enemies = function(worldReference, playerReference) {
 
                 Enemy.push(enemy);
             
-            }
+            
         }
 
     };
@@ -134,4 +134,3 @@ var Enemies = function(worldReference, playerReference) {
             nextEnemy = phaser.time.now;
         }*/
     })();
-};
