@@ -5,13 +5,14 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     var mEnemies = enemiesReference;
     var laser = null;
     var shoot = null;
+    var shootGroup = null;
     var emitter = phaser.add.emitter(0, 0, 15);
     var mListeners = [];
     
     var Speed = 100;
     
     this.update = function() {
-       phaser.physics.arcade.collide(shoot, mWorldReference);
+       phaser.physics.arcade.collide(shootGroup, mWorldReference);
        phaser.physics.arcade.collide(mEnemies, shoot, killEnemy, null, this);
         
         if(teclaDR1.isDown){
@@ -40,8 +41,8 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     var createShot = function() {
         
         //shoot = shoot.createMultiple(100,'laser'); Mirar el create multible per que no funciona
-        shoot = shoot.create(mSprite.x, mSprite.y, 'laser');
-        shoot = shoot.create(mSprite2.x, mSprite2.y, 'laser');
+        shoot = shootGroup.create(mSprite.x, mSprite.y, 'laser');
+        shoot = shootGroup.create(mSprite2.x, mSprite2.y, 'laser');
         
         shoot.scale.setTo(0.3, 0.7);
         //shoot = phaser.add.group();
@@ -50,7 +51,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     };
     
     var enablePhysics = function() {
-        phaser.physics.arcade.enable(shoot);
+        phaser.physics.arcade.enable(shootGroup);
         shoot.body.velocity.x = Speed;
         
     };
@@ -96,8 +97,8 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     };
     
     (function() {
-        shoot = phaser.add.group();
-        shoot.enableBody = true;
+        shootGroup = phaser.add.group();
+        shootGroup.enableBody = true;
         
         emitter.makeParticles('pixel');
         emitter.setYSpeed(-150, 150);
