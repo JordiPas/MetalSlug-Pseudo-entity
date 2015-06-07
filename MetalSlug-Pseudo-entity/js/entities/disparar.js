@@ -4,14 +4,16 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
     var mEnemies = enemiesReference;
     var laser = null;
     var shoot = null;
+    var shoots = null;
     var emitter = phaser.add.emitter(0, 0, 15);
     var groupBullets = null;
+    var shootTime = 0;
     
     var Speed = 100;
     
     this.update = function() {
         phaser.physics.arcade.collide(shoot, mWorldReference);
-        phaser.physics.arcade.overlap(mEnemies, shoot, killEnemy, null, this);
+        phaser.physics.arcade.overlap(shoot, mEnemies, killEnemy, null, this);
         
         /*shoot.forEachAlive(function(onTeclaDisparPressed) {
             //mEnemies.forEachAlive(function(mEnemies) {
@@ -46,7 +48,7 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
         
         for (var i=0; i<20; i++) {            
         
-            var s = shoot.create(mSprite.x, mSprite.y, 'laser');
+            var s = shoots.create(mSprite.x, mSprite.y, 'laser');
             s.exists = false;
             s.visible = false;
             s.checlWorldBounds = true;
@@ -62,38 +64,54 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
     
     var enablePhysics = function() {
         phaser.physics.arcade.enable(shoot);
-        shoot.body.velocity.x = Speed;
+        //shoot.body.velocity.x = Speed;
         
     };
     
-    var killEnemy = function() {
+    var killEnemy = function(shoot, mEnemies) {
         
         //if( phaser.physics.arcade.collide(mEnemies, shoot) {
            
          console.log("Enemy DIE");
-        if(shoot){
+        //if(shoot){
         
             shoot.kill();
+            mEnemies.kill();
  
             emitter.x = mEnemies.x;
             emitter.y = mEnemies.y;
             emitter.start(true, 600, null, 15);
             
-            mEnemies.kill();
-        }
+            //mEnemies.kill();
+        //}
     };
     
     // Funció d'apretar la tecla per disparar.
     var onTeclaDisparPressed = function(){
-        if(teclaDR1.isDown) {
-            shoot.reset(mSprite.x, mSprite.y);
-            shoot.body.velocity.x = 400;
-            //laserTime = phaser.time.now + 500;
+        
+        if(phaser.time.now > shootTime) {
+            shoot = shoots.getFirstExists(false);
+            
+            if(shoot) {
+                shoot.reset(mSprite.x +6, mSprite.y -8);
+                shoot.body.velocity.y = -300;
+                shootTime = phaser.time.now + 150;
+                
+            }
+            
+            
+            
+            //if(teclaDR1.isDown) {
+                
+                //shoot.reset(mSprite.x, mSprite.y);
+                //shoot.body.velocity.x = 400;
+                //shootTime = phaser.time.now + 500;
 
-        }else if(teclaDL1.isDown) {
-            shoot.reset(mSprite.x, mSprite.y);
-            shoot.body.velocity.x = -400;
-            //laserTime = phaser.time.now + 500;
+            //}else if(teclaDL1.isDown) {
+                //shoot.reset(mSprite.x, mSprite.y);
+                //shoot.body.velocity.x = -400;
+                //shootTime = phaser.time.now + 500;
+            //}
         }
     };
         
