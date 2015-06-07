@@ -43,6 +43,10 @@ var Enemies = function(worldReference, playerReference) {
             }
         
     };
+    
+    this.getPhysicsReference = function() {
+        return EnemyGroup;
+    };
         
     
     var createEnemies = function() {
