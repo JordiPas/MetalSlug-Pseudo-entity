@@ -5,12 +5,19 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
     var laser = null;
     var shoot = null;
     var emitter = phaser.add.emitter(0, 0, 15);
+    var groupBullets = null;
     
     var Speed = 100;
     
     this.update = function() {
         phaser.physics.arcade.collide(shoot, mWorldReference);
-        phaser.physics.arcade.collide(mEnemies, shoot, killEnemy, null, this);
+        phaser.physics.arcade.overlap(mEnemies, shoot, killEnemy, null, this);
+        
+        /*shoot.forEachAlive(function(onTeclaDisparPressed) {
+            //mEnemies.forEachAlive(function(mEnemies) {
+                phaser.physics.arcade.overlap(shoot, mEnemies, killEnemy, null, this);
+            //}, this);
+        }, this);*/
         
         if(teclaDR1.isDown){
              onTeclaDisparPressed();          
@@ -24,10 +31,31 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
     };
     
     var createShot = function() {
+          
+        /*for (var i = 0; i < 20; i++)
+    {
+        var b = bullets.create(0, 0, 'bullet');
+        b.name = 'bullet' + i;
+        b.exists = false;
+        b.visible = false;
+        b.checkWorldBounds = true;
+        b.events.onOutOfBounds.add(resetBullet, this);
+    }*/
+        shoot.physicsBodyType = Phaser.Physics.ARCADE;
         
-        //shoot = shoot.createMultiple(100,'laser'); Mirar el create multible per que no funciona
-        shoot = shoot.create(mSprite.x, mSprite.y, 'laser');
-        shoot.scale.setTo(0.3, 0.7);
+        
+        for (var i=0; i<20; i++) {            
+        
+            var s = shoot.create(mSprite.x, mSprite.y, 'laser');
+            s.exists = false;
+            s.visible = false;
+            s.checlWorldBounds = true;
+            s.events.onOutOfBounds.add(resetShoot, this);
+            shoot.setAll('checkWorldBounds', true);
+            //shoot = shoot.createMultiple(100,'laser'); Mirar el create multible per que no funciona
+            //shoot = shoot.create(mSprite.x, mSprite.y, 'laser');
+            shoot.scale.setTo(0.3, 0.7);
+        }
         
         enablePhysics();
     };
@@ -38,15 +66,20 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
         
     };
     
-    var killEnemy = function(shoot, mEnemies) {
+    var killEnemy = function() {
+        
+        //if( phaser.physics.arcade.collide(mEnemies, shoot) {
+           
+         console.log("Enemy DIE");
         if(shoot){
-            mEnemies.kill();
         
             shoot.kill();
  
             emitter.x = mEnemies.x;
             emitter.y = mEnemies.y;
             emitter.start(true, 600, null, 15);
+            
+            mEnemies.kill();
         }
     };
     
@@ -62,6 +95,11 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
             shoot.body.velocity.x = -400;
             //laserTime = phaser.time.now + 500;
         }
+    };
+        
+    var resetShoot = function() {
+        shoot.kill();       
+        
     };
     
     (function() {
