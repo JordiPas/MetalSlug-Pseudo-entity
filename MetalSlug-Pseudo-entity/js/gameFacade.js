@@ -11,7 +11,7 @@ var GameFacade = function() {
         mLaser.update();
         mEnemies.update();
         mPlayer.update();
-        mScore.update();
+        //mScore.updateScore();
         
 
     };
@@ -27,7 +27,7 @@ var GameFacade = function() {
         mPlayer = new Player(mWorld.getPhysicsReference());
         mEnemies = new Enemies(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference());
         mLaser = new Disparar(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(), mEnemies.getPhysicsReference());
-        mScore = new Score(/*mEnemies.getPhysicsReference()*/);
+        mScore = new Score();
         mPlayer.registerListener(mSelf);
         
        

@@ -11,7 +11,7 @@ var Enemies = function(worldReference, playerReference) {
     var delay = 0;
     var score = 50; //Posar la score real ara és ficticia
     var emitter = phaser.add.emitter(0, 0, 15);
-    var i = 0;
+    var i=0;
     
     
     var maxSpeed = 80;
@@ -24,23 +24,23 @@ var Enemies = function(worldReference, playerReference) {
         phaser.physics.arcade.collide(EnemyGroup, mWorldReference);
         phaser.physics.arcade.collide(mSprite, Enemy, killPlayer, null, this);
         
-        
-            if (nextEnemy < phaser.time.now) {
-                if(i<totalEnemies) {
-                    //Per fer que quan la puntuació augmenti surtin més enemics
-                    start = 4000, end = 1000, score = 100;
-                    delay = Math.max(start - (start-end)*score/score, end);
+        if (nextEnemy < phaser.time.now) {
+            if(i<totalEnemies){
+                //Per fer que quan la puntuació augmenti surtin més enemics
+                start = 4000, end = 1000, score = 100;
+                delay = Math.max(start - (start-end)*score/score, end);
 
-
-
-                    //Crea els enemics
-                    createEnemies();
-                    i++;
-                }
+                //Crea els enemics
+                createEnemies();
                 //Suma el temps per que surti el proxim enemic
-                //nextEnemy = phaser.time.now + delay;
-                nextEnemy = phaser.time.now + 2000;
+                i++;
             }
+            nextEnemy = phaser.time.now + delay;
+            
+            
+        }
+        
+       
         
     };
     
@@ -57,12 +57,12 @@ var Enemies = function(worldReference, playerReference) {
         enemy.scale.setTo(0.7, 0.5);
         enablePhysics();
         Enemy.push(enemy);
-    
+
     };
     
     var enablePhysics = function() {
         
-        phaser.physics.arcade.enable(EnemyGroup);
+        phaser.physics.arcade.enable(Enemy);
         enemy.body.bounce.x = 1;
         enemy.body.gravity.y = 300;
         enemy.body.collideWorldBounds = true;
@@ -90,6 +90,8 @@ var Enemies = function(worldReference, playerReference) {
         emitter.setYSpeed(-150, 150);
         emitter.setXSpeed(-150, 150);
         emitter.gravity = 0;
+        
+        createEnemies();
         
     })();
 };
