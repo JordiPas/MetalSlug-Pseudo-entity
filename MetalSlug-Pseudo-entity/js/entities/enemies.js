@@ -1,6 +1,7 @@
-var Enemies = function(worldReference, playerReference) {
+var Enemies = function(worldReference, playerReference, player2Reference) {
     var mWorldReference = worldReference;
     var mSprite = playerReference;
+    var mSprite2 = player2Reference;
     var enemy = null;
     var Enemy = [];
     var EnemyGroup = null;
@@ -23,6 +24,7 @@ var Enemies = function(worldReference, playerReference) {
     this.update = function() {
         phaser.physics.arcade.collide(EnemyGroup, mWorldReference);
         phaser.physics.arcade.collide(mSprite, Enemy, killPlayer, null, this);
+        phaser.physics.arcade.collide(mSprite2, Enemy, killPlayer2, null, this);
         
         if (nextEnemy < phaser.time.now) {
             if(i<totalEnemies){
@@ -76,9 +78,19 @@ var Enemies = function(worldReference, playerReference) {
     
     var killPlayer = function() {
         mSprite.kill();
+        
          
         emitter.x = mSprite.x;
         emitter.y = mSprite.y;
+        emitter.start(true, 600, null, 15);
+    };
+    
+    var killPlayer2 = function() {
+        mSprite2.kill();
+        
+         
+        emitter.x = mSprite2.x;
+        emitter.y = mSprite2.y;
         emitter.start(true, 600, null, 15);
     };
     

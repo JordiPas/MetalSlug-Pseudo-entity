@@ -1,6 +1,7 @@
-var Disparar = function (worldReference, playerReference, enemiesReference) {
+var Disparar = function (worldReference, playerReference, player2Reference, enemiesReference) {
     var mWorldReference = worldReference;
     var mSprite = playerReference;
+    var mSprite2 = player2Reference;
     var mEnemies = enemiesReference;
     var laser = null;
     var shoot = null;
@@ -22,6 +23,14 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
              onTeclaDisparPressed();
          }
         
+        if(teclaDR2.isDown) {
+            onTeclaDisparPressed();
+        }
+        
+        if(teclaDL2.isDown) {
+            onTeclaDisparPressed();
+        }
+        
     };
     
     this.registerListener = function(listener){
@@ -32,8 +41,10 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
         
         //shoot = shoot.createMultiple(100,'laser'); Mirar el create multible per que no funciona
         shoot = shoot.create(mSprite.x, mSprite.y, 'laser');
+        shoot = shoot.create(mSprite2.x, mSprite2.y, 'laser');
+        
         shoot.scale.setTo(0.3, 0.7);
-       // shoot = phaser.add.group();
+        //shoot = phaser.add.group();
         
         enablePhysics();
     };
@@ -71,6 +82,14 @@ var Disparar = function (worldReference, playerReference, enemiesReference) {
 
         }else if(teclaDL1.isDown) {
             shoot.reset(mSprite.x, mSprite.y);
+            shoot.body.velocity.x = -400;
+            //laserTime = phaser.time.now + 500;
+        }else if(teclaDR2.isDown) {
+            shoot.reset(mSprite2.x, mSprite2.y);
+            shoot.body.velocity.x = -400;
+            //laserTime = phaser.time.now + 500;
+        }else if(teclaDL2.isDown) {
+            shoot.reset(mSprite2.x, mSprite2.y);
             shoot.body.velocity.x = -400;
             //laserTime = phaser.time.now + 500;
         }
