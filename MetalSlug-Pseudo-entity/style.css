@@ -1,0 +1,16 @@
+body {
+    background-color: #1E1E1E;
+}
+
+h1 {
+    font-family: "Impact, Charcoal, sans-serif";
+    color: orange;
+    text-align: center;
+    webkit-text-fill-color: black;
+    webkit-text-stroke: 1px black;
+}
+
+p {
+    font-family: "Impact, Charcoal, sans-serif";
+    font-size: 20px;
+}

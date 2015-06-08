@@ -8,6 +8,7 @@ var phaser = new Phaser.Game(
         preload: function() {
             
             //phaser.stage.backgroundColor = "#99cc33";
+            phaser.load.image('backgroundMenu', 'assets/metalico.jpg');
             phaser.load.image('enemy', 'assets/enemy.png');
             phaser.load.image('pixel', 'assets/pixel.png');
             phaser.load.image('laser', 'assets/laser.png'); //Disparar
@@ -22,7 +23,11 @@ var phaser = new Phaser.Game(
         },
         
         create: function() {
-            gameFacade = new GameFacade();
+            phaser.state.add('menu', MenuState);
+            //gameFacade = new GameFacade();
+            phaser.state.add('game', GameFacade);
+            phaser.state.start('menu');
+            
             //Tecles per disparar
             teclaDR1 = phaser.input.keyboard.addKey(Phaser.Keyboard.M); //Dreta dispar
             teclaDL1 = phaser.input.keyboard.addKey(Phaser.Keyboard.N); //Esquerra dispar

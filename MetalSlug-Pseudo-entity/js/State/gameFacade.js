@@ -7,6 +7,23 @@ var GameFacade = function() {
     var mEnemies = null;
     var mLaser = null;
     var mScore = null;
+    
+    this.create = function() {
+        enablePhysics();
+        
+        mWorld = new World();
+        mPlayer = new Player(mWorld.getPhysicsReference());
+        mPlayer2 = new Player2(mWorld.getPhysicsReference());
+        mEnemies = new Enemies(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(), mPlayer2.getPhysicsReference());
+        mLaser = new Disparar(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(),mPlayer2.getPhysicsReference(), mEnemies.getPhysicsReference());
+        mScore = new Score();
+        
+        mPlayer.registerListener(mSelf);
+        mPlayer2.registerListener(mSelf2);
+        mLaser.registerListener(mSelf);
+        
+       
+    };
 
     
     this.update = function() {
@@ -19,29 +36,14 @@ var GameFacade = function() {
 
     };
     
-    var enablePhysics = function() {
-        phaser.physics.startSystem(Phaser.Physics.ARCADE);
-    };
-   
-    (function() {
-        enablePhysics();
-        
-        mWorld = new World();
-        mPlayer = new Player(mWorld.getPhysicsReference());
-        mPlayer2 = new Player2(mWorld.getPhysicsReference());
-        mEnemies = new Enemies(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(), mPlayer2.getPhysicsReference());
-        mLaser = new Disparar(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(),mPlayer2.getPhysicsReference(), mEnemies.getPhysicsReference());
-        mScore = new Score();
-        
-        mPlayer.registerListener(mSelf);
-        mPlayer2.registerListener(mSelf2);
-        
-       
-    })();
-    
     this.killEnemy = function() {
         mScore.killEnemy();
     };
     
+    
+    var enablePhysics = function() {
+        phaser.physics.startSystem(Phaser.Physics.ARCADE);
+    };
+   
 };
     
