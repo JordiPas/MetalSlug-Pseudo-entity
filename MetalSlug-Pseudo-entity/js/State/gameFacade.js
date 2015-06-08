@@ -20,7 +20,7 @@ var GameFacade = function() {
         
         mPlayer.registerListener(mSelf);
         mPlayer2.registerListener(mSelf2);
-        mLaser.registerListener(mSelf);
+        mLaser.registerListener(mEnemies);
         
        
     };

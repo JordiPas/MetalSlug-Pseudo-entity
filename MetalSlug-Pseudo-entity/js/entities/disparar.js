@@ -62,7 +62,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     
     var killEnemy = function(shoot, mEnemies) {
         if(shoot){
-            mEnemies.kill();
+            //mEnemies.kill();
         
             shoot.kill();
  
@@ -71,14 +71,13 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             emitter.start(true, 600, null, 15);
         }
         mEnemies.kill();
-        console.log('MatarEnemigo');
-        
-        mListeners.forEach(function(listener){
-            listener.killEnemy();
-        });
-        
+        console.log('MatarEnemigo');       
         
     };
+    
+    mListeners.forEach(function(listener){
+            listener.killEnemy();
+        });
     
     // Funció d'apretar la tecla per disparar.
     var onTeclaDisparPressed = function(){

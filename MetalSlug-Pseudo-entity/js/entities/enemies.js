@@ -44,9 +44,7 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
             nextEnemy = phaser.time.now + delay;
             
             
-        }
-        
-       
+        }      
         
     };        
     
