@@ -18,6 +18,7 @@ var Score = function () {
     };*/
     
     var updateScore = function () {
+        console.log('ENTRO');
         mText.text = 'Score: ' + score;
     };
     

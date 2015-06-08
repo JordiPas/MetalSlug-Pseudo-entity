@@ -19,12 +19,11 @@ var GameFacade = function() {
         mScore = new Score();
         
         mPlayer.registerListener(mSelf);
-        mPlayer2.registerListener(mSelf2);
-        mLaser.registerListener(mEnemies);
-        
+        mPlayer2.registerListener(mSelf);
+        mLaser.registerListener(mSelf);
+        //mLaser.registerListener(mEnemies);       
        
     };
-
     
     this.update = function() {
         mLaser.update();
@@ -33,13 +32,12 @@ var GameFacade = function() {
         mPlayer2.update();
         //mScore.updateScore();
         
-
     };
     
     this.killEnemy = function() {
+        console.log('GameMatar');
         mScore.killEnemy();
-    };
-    
+    };  
     
     var enablePhysics = function() {
         phaser.physics.startSystem(Phaser.Physics.ARCADE);

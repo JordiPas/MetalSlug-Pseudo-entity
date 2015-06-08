@@ -8,6 +8,7 @@ var phaser = new Phaser.Game(
         preload: function() {
             
             //phaser.stage.backgroundColor = "#99cc33";
+            phaser.load.image('instruccions', 'assets/instruccions.png');
             phaser.load.image('backgroundMenu', 'assets/metalico.jpg');
             phaser.load.image('enemy', 'assets/enemy.png');
             phaser.load.image('pixel', 'assets/pixel.png');
@@ -25,7 +26,7 @@ var phaser = new Phaser.Game(
         
         create: function() {
             phaser.state.add('menu', MenuState);
-            //gameFacade = new GameFacade();
+            phaser.state.add('instruccions', InstructionsState);
             phaser.state.add('game', GameFacade);
             phaser.state.start('menu');
             
@@ -38,6 +39,8 @@ var phaser = new Phaser.Game(
             
             teclaDR2 = phaser.input.keyboard.addKey(Phaser.Keyboard.X); //Dreta dispar Player2
             teclaDL2 = phaser.input.keyboard.addKey(Phaser.Keyboard.Z); //Esquerra dispar Player2
+            
+            
         },
         
         update: function() {

@@ -24,11 +24,24 @@ var MainMenu = function() {
 		phaser.add.tween(startLabel).to({angle: -2}, 500).to({angle:2}, 500).loop().start();   
     };
     
+    var createInstructionsText = function() {
+        var startLabel = phaser.add.text(phaser.world.centerX, phaser.world.height-50, 'press the i for instruccions', { font: '25px Arial', fill: '#ffffff' });
+		startLabel.anchor.setTo(0.5, 0.5);
+
+		phaser.add.tween(startLabel).to({angle: -2}, 500).to({angle:2}, 500).loop().start(); 
+    };
+        
+        
+//-------------Comença el joc------------------//    
     var attachKeyboardCallback = function() {
         
         var upKey = phaser.input.keyboard.addKey(Phaser.Keyboard.UP);
 		upKey.onDown.addOnce(onUpKeyDown, this);
+        
+        var iKey = phaser.input.keyboard.addKey(Phaser.Keyboard.I);
+		iKey.onDown.addOnce(controls, this);
     };
+        
     // Quan apretes la flecha el joc comença.
     var onUpKeyDown = function() {
         phaser.state.start('game');
@@ -36,22 +49,17 @@ var MainMenu = function() {
     
     // ----- Instruccions ----- //
     
-    /*var controls = function(){
-        addBackground(); 
-        phaser.add.sprite(50, 20, 'controls');
-        phaser.add.button(phaser.world.centerX - 95, 515, 'goback', selectMode, this); 
+    var controls = function(){
+        phaser.state.start('instruccions');
     };
     
-    var clickInstructions = function(){
-        phaser.add.button(phaser.world.centerX - 95, 350, controls, this);   
-    }*/
     
     // Crida les funcions anteriors.
     (function() {
         addBackground();
-        //clickInstructions();
         createIntroText();
         createIntroText2();
+        createInstructionsText();
         createStartText();
         attachKeyboardCallback();
     })()
