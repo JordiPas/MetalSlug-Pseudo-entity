@@ -38,6 +38,7 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
 
                 //Crea els enemics
                 createEnemies();
+                createEnemies2();
                 //Suma el temps per que surti el proxim enemic
                 i++;
             }
@@ -53,6 +54,17 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         
         //Crea un enemic
         enemy = EnemyGroup.create(155, 10, 'enemy');
+        enemy.scale.setTo(0.7, 0.5);
+        enablePhysics();
+        Enemy.push(enemy);
+
+    };
+    
+    var createEnemies2 = function() {
+        //Aqui a d'anar el codi per que si un enemic és mort en surti un altre!!!!!!
+        
+        //Crea un enemic
+        enemy = EnemyGroup.create(760, 380, 'enemy');
         enemy.scale.setTo(0.7, 0.5);
         enablePhysics();
         Enemy.push(enemy);
@@ -101,7 +113,8 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         emitter.setXSpeed(-150, 150);
         emitter.gravity = 0;
         
-        createEnemies();
+        //createEnemies();
+        //createEnemies2();
         
     })();
 };

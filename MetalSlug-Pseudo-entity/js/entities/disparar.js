@@ -4,7 +4,9 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     var mSprite2 = player2Reference;
     var mEnemies = enemiesReference;
     var laser = null;
+    var laser_P2 = null;
     var shoot = null;
+    var shoot2 = null;
     var shootGroup = null;
     var emitter = phaser.add.emitter(0, 0, 15);
     var mListeners = [];
@@ -13,7 +15,9 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     
     this.update = function() {
        phaser.physics.arcade.collide(shoot, mWorldReference);
+       phaser.physics.arcade.collide(shoot2, mWorldReference);
        phaser.physics.arcade.collide(mEnemies, shoot, killEnemy, null, this);
+        phaser.physics.arcade.collide(mEnemies, shoot2, killEnemy, null, this);
        phaser.physics.arcade.overlap(mEnemies, shoot, killEnemy, null, this);    
         
         if(teclaDR1.isDown){
@@ -26,11 +30,11 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
          }
         
         if(teclaDR2.isDown) {
-            onTeclaDisparPressed();
+            onTeclaDisparPressed_Player2();
         }
         
         if(teclaDL2.isDown) {
-            onTeclaDisparPressed();
+            onTeclaDisparPressed_Player2();
         }
         
     };
@@ -45,9 +49,11 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
         //shoot = shootGroup.create(mSprite.x, mSprite.y, 'laser');
         //shoot = shootGroup.create(mSprite2.x, mSprite2.y, 'laser');
         shoot = shoot.create(mSprite.x, mSprite.y, 'laser');
+        shoot2 = shoot2.create(mSprite2.x, mSprite2.y, 'laser2');
         //shoot = shoot.create(mSprite2.x, mSprite2.y, 'laser');
         
         shoot.scale.setTo(0.3, 0.7);
+        shoot2.scale.setTo(0.3, 0.7);
         //shoot = phaser.add.group();
         
         enablePhysics();
@@ -56,13 +62,15 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     var enablePhysics = function() {
         //phaser.physics.arcade.enable(shootGroup);
         phaser.physics.arcade.enable(shoot);
+        phaser.physics.arcade.enable(shoot2);
         shoot.body.velocity.x = Speed;
+        shoot2.body.velocity.x = Speed;
         
     };
     
     var killEnemy = function(shoot, mEnemies) {
-        if(shoot){
-            //mEnemies.kill();
+        if(shoot || shoot2){
+            mEnemies.kill();
         
             shoot.kill();
  
@@ -70,7 +78,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             emitter.y = mEnemies.y;
             emitter.start(true, 600, null, 15);
         }
-        mEnemies.kill();
+        //mEnemies.kill();
         console.log('MatarEnemigo');       
         
     };
@@ -90,13 +98,17 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             shoot.reset(mSprite.x, mSprite.y);
             shoot.body.velocity.x = -400;
             //laserTime = phaser.time.now + 500;
-        }else if(teclaDR2.isDown) {
-            shoot.reset(mSprite2.x, mSprite2.y);
-            shoot.body.velocity.x = 400;
+        }
+    };
+    
+    var onTeclaDisparPressed_Player2 = function(){
+        if(teclaDR2.isDown) {
+            shoot2.reset(mSprite2.x, mSprite2.y);
+            shoot2.body.velocity.x = 400;
             //laserTime = phaser.time.now + 500;
         }else if(teclaDL2.isDown) {
-            shoot.reset(mSprite2.x, mSprite2.y);
-            shoot.body.velocity.x = -400;
+            shoot2.reset(mSprite2.x, mSprite2.y);
+            shoot2.body.velocity.x = -400;
             //laserTime = phaser.time.now + 500;
         }
     };
@@ -105,7 +117,10 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
         //shootGroup = phaser.add.group();
         //shootGroup.enableBody = true;
         shoot = phaser.add.group();
+        shoot2 = phaser.add.group();
         shoot.enableBody = true;
+        shoot2.enableBody = true;
+       
         
         
         emitter.makeParticles('pixel');

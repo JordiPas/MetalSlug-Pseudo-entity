@@ -55,10 +55,12 @@ var Player2 = function(worldReference) {
     };
     
     var onPressUp = function() {
-        mSprite2.body.velocity.y = -150;
-        /*if(mSprite.body.touching.down) {
-            mSprite.body.velocity.y = -350;
-        }*/
+        if(mSprite2.body.onFloor()){
+            mSprite2.body.velocity.y = -300;
+            /*if(mSprite.body.touching.down) {
+                mSprite.body.velocity.y = -350;
+            }*/
+        }
     };
     
     var onNoDirectionPressed = function() {
@@ -70,9 +72,9 @@ var Player2 = function(worldReference) {
 //Constructor
     (function() {
         mSprite2 = phaser.add.sprite(32, phaser.world.height - 150, 'player2');
-        mSprite2.animations.add('left', [0, 1, 2, 3, 4, 5], 20, true);
-        mSprite2.animations.add('right', [7, 8, 9, 10, 11, 12], 20, true);
-        mSprite2.scale.setTo(1.25, 1.5);
+        mSprite2.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
+        mSprite2.animations.add('right', [7, 8, 9, 10, 11, 12], 10, true);
+        mSprite2.scale.setTo(1.50, 1.5);
         //phaser.camera.follow(mSprite);
         
         //mCursor = phaser.input.keyboard.createCursorKeys();
