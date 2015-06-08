@@ -1,33 +1,34 @@
 var Score = function () {
     var score = 0;
-    var scoreLabel = null;
-    var totalScore = 0;
+    var mText = null;
+    //var scoreLabel = null;
+    //var totalScore = 0;
     //var mEnemies = enemiesReference;
    // var mDisparar = dispararReference;
     
     
     this.killEnemy = function(){
         score += 10;
-        sumarScore();
+        updateScore();
     };
     
-    var sumarScore = function() {
+    /*var sumarScore = function() {
         totalScore = totalScore + score;
         
-    };
+    };*/
     
     var updateScore = function () {
-        scoreLabel.text = 'score: ' + totalScore;
+        mText.text = 'Score: ' + score;
     };
     
-    var mostrarScore = function(){
+    /*var mostrarScore = function(){
         scoreLabel = phaser.add.text(30, 30, 'score: 0', { font: '18px Arial', fill: '#ffffff' });
 
         
-    };
+    };*/
      
      (function () {
-         mostrarScore();
+         mText = phaser.add.text(30, 30, 'score: 0', {fontSize: '50px', fill: '#fff' });
          updateScore();
     })();
 };

@@ -77,7 +77,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     
     mListeners.forEach(function(listener){
             listener.killEnemy();
-        });
+    });
     
     // Funció d'apretar la tecla per disparar.
     var onTeclaDisparPressed = function(){
