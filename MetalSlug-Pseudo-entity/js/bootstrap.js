@@ -12,7 +12,7 @@ var phaser = new Phaser.Game(
             phaser.load.image('pixel', 'assets/pixel.png');
             phaser.load.image('laser', 'assets/laser.png'); //Disparar
             phaser.load.spritesheet('player', 'assets/CorrerSlug.png', 51, 53);
-            phaser.load.spritesheet('player2', 'assets/correrSlug2.png', 50, 53);
+            phaser.load.spritesheet('player2', 'assets/correrSlug2.png', 60, 53);
             phaser.load.tilemap('casa', 'assets/TiledMetalSlug.json', null, Phaser.Tilemap.TILED_JSON);
             phaser.load.image('background', 'assets/Casa.png');            
             phaser.load.image('Muro', 'assets/tileset.png');

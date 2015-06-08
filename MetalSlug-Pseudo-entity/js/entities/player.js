@@ -34,7 +34,7 @@ var Player = function(worldReference) {
     
     this.registerListener = function(listener) {
         mListeners.push(listener);
-    }
+    };
     
     
     var enablePhysics = function() {

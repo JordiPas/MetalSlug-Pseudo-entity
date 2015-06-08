@@ -20,11 +20,15 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
     var velx = Math.random()*(maxSpeed - minSpeed+1)-minSpeed;
     var vely = Math.random()*(maxSpeed - minSpeed+1)-minSpeed;
     
+    this.getPhysicsReference = function() {
+        return EnemyGroup;
+    };    
     
     this.update = function() {
         phaser.physics.arcade.collide(EnemyGroup, mWorldReference);
         phaser.physics.arcade.collide(mSprite, Enemy, killPlayer, null, this);
         phaser.physics.arcade.collide(mSprite2, Enemy, killPlayer2, null, this);
+       
         
         if (nextEnemy < phaser.time.now) {
             if(i<totalEnemies){
@@ -44,12 +48,7 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         
        
         
-    };
-    
-    this.getPhysicsReference = function() {
-        return EnemyGroup;
-    };
-        
+    };        
     
     var createEnemies = function() {
         //Aqui a d'anar el codi per que si un enemic és mort en surti un altre!!!!!!
@@ -93,6 +92,7 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         emitter.y = mSprite2.y;
         emitter.start(true, 600, null, 15);
     };
+    
     
     (function() {
         EnemyGroup = phaser.add.group();

@@ -12,8 +12,9 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     var Speed = 100;
     
     this.update = function() {
-       phaser.physics.arcade.collide(shootGroup, mWorldReference);
+       phaser.physics.arcade.collide(shoot, mWorldReference);
        phaser.physics.arcade.collide(mEnemies, shoot, killEnemy, null, this);
+       phaser.physics.arcade.overlap(mEnemies, shoot, killEnemy, null, this);    
         
         if(teclaDR1.isDown){
              onTeclaDisparPressed();          
@@ -41,8 +42,10 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     var createShot = function() {
         
         //shoot = shoot.createMultiple(100,'laser'); Mirar el create multible per que no funciona
-        shoot = shootGroup.create(mSprite.x, mSprite.y, 'laser');
-        shoot = shootGroup.create(mSprite2.x, mSprite2.y, 'laser');
+        //shoot = shootGroup.create(mSprite.x, mSprite.y, 'laser');
+        //shoot = shootGroup.create(mSprite2.x, mSprite2.y, 'laser');
+        shoot = shoot.create(mSprite.x, mSprite.y, 'laser');
+        //shoot = shoot.create(mSprite2.x, mSprite2.y, 'laser');
         
         shoot.scale.setTo(0.3, 0.7);
         //shoot = phaser.add.group();
@@ -51,7 +54,8 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     };
     
     var enablePhysics = function() {
-        phaser.physics.arcade.enable(shootGroup);
+        //phaser.physics.arcade.enable(shootGroup);
+        phaser.physics.arcade.enable(shoot);
         shoot.body.velocity.x = Speed;
         
     };
@@ -72,6 +76,8 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
         mListeners.forEach(function(listener){
             listener.killEnemy();
         });
+        
+        
     };
     
     // Funció d'apretar la tecla per disparar.
@@ -87,7 +93,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             //laserTime = phaser.time.now + 500;
         }else if(teclaDR2.isDown) {
             shoot.reset(mSprite2.x, mSprite2.y);
-            shoot.body.velocity.x = -400;
+            shoot.body.velocity.x = 400;
             //laserTime = phaser.time.now + 500;
         }else if(teclaDL2.isDown) {
             shoot.reset(mSprite2.x, mSprite2.y);
@@ -97,13 +103,18 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     };
     
     (function() {
-        shootGroup = phaser.add.group();
-        shootGroup.enableBody = true;
+        //shootGroup = phaser.add.group();
+        //shootGroup.enableBody = true;
+        shoot = phaser.add.group();
+        shoot.enableBody = true;
+        
         
         emitter.makeParticles('pixel');
         emitter.setYSpeed(-150, 150);
         emitter.setXSpeed(-150, 150);
         emitter.gravity = 0;
+        
+        createShot();
     })();
     
 };

@@ -19,10 +19,6 @@ var GameFacade = function() {
 
     };
     
-    this.killEnemy = function() {
-        mScore.killEnemy();
-    };
-    
     var enablePhysics = function() {
         phaser.physics.startSystem(Phaser.Physics.ARCADE);
     };
@@ -36,10 +32,16 @@ var GameFacade = function() {
         mEnemies = new Enemies(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(), mPlayer2.getPhysicsReference());
         mLaser = new Disparar(mWorld.getPhysicsReference(), mPlayer.getPhysicsReference(),mPlayer2.getPhysicsReference(), mEnemies.getPhysicsReference());
         mScore = new Score();
+        
         mPlayer.registerListener(mSelf);
         mPlayer2.registerListener(mSelf2);
         
        
     })();
+    
+    this.killEnemy = function() {
+        mScore.killEnemy();
+    };
+    
 };
     

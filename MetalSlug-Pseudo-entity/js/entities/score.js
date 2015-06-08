@@ -9,15 +9,15 @@ var Score = function () {
     this.killEnemy = function(){
         score += 10;
         sumarScore();
-    }
-    
-    var updateScore = function () {
-        scoreLabel.text = 'score: ' + totalScore;
     };
     
     var sumarScore = function() {
         totalScore = totalScore + score;
         
+    };
+    
+    var updateScore = function () {
+        scoreLabel.text = 'score: ' + totalScore;
     };
     
     var mostrarScore = function(){
