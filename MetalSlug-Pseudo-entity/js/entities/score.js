@@ -45,6 +45,12 @@ var Score = function () {
     var reset = function(){
         phaser.state.start('menu');
         youWin.stop();
+        
+        //Tornem habilitar els dispars
+        teclaDR1 = phaser.input.keyboard.addKey(Phaser.Keyboard.M); 
+        teclaDL1 = phaser.input.keyboard.addKey(Phaser.Keyboard.N); 
+        teclaDR2 = phaser.input.keyboard.addKey(Phaser.Keyboard.X); 
+        teclaDL2 = phaser.input.keyboard.addKey(Phaser.Keyboard.Z);
     };
     
      (function () {

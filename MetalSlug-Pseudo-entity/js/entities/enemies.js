@@ -98,6 +98,10 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         playersLost();
         deadSound = phaser.add.audio('playerDead');
         deadSound.play();
+        
+        //Deshabilitar dispars
+        teclaDR1 = phaser.input.keyboard.addKey();
+        teclaDL1 = phaser.input.keyboard.addKey();
     };
     
     //Mort el jugador 2
@@ -111,6 +115,10 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         playersLost();
         deadSound = phaser.add.audio('playerDead');
         deadSound.play();
+        
+        //Deshabilitar dispars
+        teclaDR2 = phaser.input.keyboard.addKey();
+        teclaDL2 = phaser.input.keyboard.addKey();
     };
     
     // ----- Jugador pierde la partida ----- //
@@ -140,6 +148,12 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
     var reset = function(){
         phaser.state.start('menu');
         youLose.stop();
+        
+        //Tornem habilitar els dispars
+        teclaDR1 = phaser.input.keyboard.addKey(Phaser.Keyboard.M); 
+        teclaDL1 = phaser.input.keyboard.addKey(Phaser.Keyboard.N); 
+        teclaDR2 = phaser.input.keyboard.addKey(Phaser.Keyboard.X); 
+        teclaDL2 = phaser.input.keyboard.addKey(Phaser.Keyboard.Z);
     };
     
     

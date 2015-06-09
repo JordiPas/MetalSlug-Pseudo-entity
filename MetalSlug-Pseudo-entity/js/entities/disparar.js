@@ -41,6 +41,10 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
         
     };
     
+    this.getPhysicsReference = function() {
+        return shoot;        
+    };
+    
     this.registerListener = function(listener){
         mListeners.push(listener);   
     }
