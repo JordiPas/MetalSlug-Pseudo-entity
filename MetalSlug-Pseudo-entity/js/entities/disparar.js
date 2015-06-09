@@ -9,6 +9,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     var shoot2 = null;
     var shootGroup = null;
     var emitter = phaser.add.emitter(0, 0, 15);
+    var emitter2 = phaser.add.emitter(0, 0, 15);
     var mListeners = [];
     
     var Speed = 100;
@@ -69,7 +70,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     };
     
     var killEnemy = function(shoot, mEnemies) {
-        if(shoot || shoot2){
+        if(shoot){
             mEnemies.kill();
         
             shoot.kill();
@@ -77,15 +78,25 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             emitter.x = mEnemies.x;
             emitter.y = mEnemies.y;
             emitter.start(true, 600, null, 15);
+            
+        }else if(shoot2){
+            mEnemies.kill();
+        
+            shoot.kill();
+ 
+            emitter2.x = mEnemies.x;
+            emitter2.y = mEnemies.y;
+            emitter2.start(true, 600, null, 15);
         }
         //mEnemies.kill();
-        console.log('MatarEnemigo');       
+        console.log('MatarEnemigo'); 
+        
+        mListeners.forEach(function(listener){
+            listener.killEnemy();
+        });
         
     };
     
-    mListeners.forEach(function(listener){
-            listener.killEnemy();
-    });
     
     // Funció d'apretar la tecla per disparar.
     var onTeclaDisparPressed = function(){
@@ -99,6 +110,8 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             shoot.body.velocity.x = -400;
             //laserTime = phaser.time.now + 500;
         }
+        coinSound = phaser.add.audio('coin');
+        coinSound.play();
     };
     
     var onTeclaDisparPressed_Player2 = function(){
@@ -111,6 +124,8 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             shoot2.body.velocity.x = -400;
             //laserTime = phaser.time.now + 500;
         }
+        coinSound = phaser.add.audio('coin');
+        coinSound.play();
     };
     
     (function() {
@@ -127,6 +142,11 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
         emitter.setYSpeed(-150, 150);
         emitter.setXSpeed(-150, 150);
         emitter.gravity = 0;
+        
+        emitter2.makeParticles('pixel2');
+        emitter2.setYSpeed(-150, 150);
+        emitter2.setXSpeed(-150, 150);
+        emitter2.gravity = 0;
         
         createShot();
     })();

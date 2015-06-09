@@ -57,9 +57,8 @@ var Player2 = function(worldReference) {
     var onPressUp = function() {
         if(mSprite2.body.onFloor()){
             mSprite2.body.velocity.y = -300;
-            /*if(mSprite.body.touching.down) {
-                mSprite.body.velocity.y = -350;
-            }*/
+            jumpSound = phaser.add.audio('jump');
+            jumpSound.play();
         }
     };
     
@@ -71,7 +70,7 @@ var Player2 = function(worldReference) {
     
 //Constructor
     (function() {
-        mSprite2 = phaser.add.sprite(32, phaser.world.height - 150, 'player2');
+        mSprite2 = phaser.add.sprite(830, phaser.world.height - 600, 'player2');
         mSprite2.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
         mSprite2.animations.add('right', [7, 8, 9, 10, 11, 12], 10, true);
         mSprite2.scale.setTo(1.50, 1.5);

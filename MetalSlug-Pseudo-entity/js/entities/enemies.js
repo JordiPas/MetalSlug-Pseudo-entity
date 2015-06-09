@@ -5,14 +5,16 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
     var enemy = null;
     var Enemy = [];
     var EnemyGroup = null;
-    var totalEnemies = 5;
+    var totalEnemies = 20;
     var seconds = null;
     var nextEnemy = 0;
     var start = 0;
     var delay = 0;
     var score = 50; //Posar la score real ara és ficticia
     var emitter = phaser.add.emitter(0, 0, 15);
+    var emitter2 = phaser.add.emitter(0, 0, 15);
     var i=0;
+    var muertos = 0; // Si maten els 2 jugadors GameOver
     
     
     var maxSpeed = 80;
@@ -33,7 +35,7 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         if (nextEnemy < phaser.time.now) {
             if(i<totalEnemies){
                 //Per fer que quan la puntuació augmenti surtin més enemics
-                start = 4000, end = 1000, score = 100;
+                start = 6000, end = 1000, score = 100;
                 delay = Math.max(start - (start-end)*score/score, end);
 
                 //Crea els enemics
@@ -85,22 +87,52 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         
     };
     
+    // Mort el jugador 1
     var killPlayer = function() {
         mSprite.kill();
         
-         
         emitter.x = mSprite.x;
         emitter.y = mSprite.y;
         emitter.start(true, 600, null, 15);
+        muertos = muertos +1;
+        playersLost();
+        deadSound = phaser.add.audio('dead');
+        deadSound.play();
     };
     
+    //Mort el jugador 2
     var killPlayer2 = function() {
         mSprite2.kill();
         
-         
-        emitter.x = mSprite2.x;
-        emitter.y = mSprite2.y;
-        emitter.start(true, 600, null, 15);
+        emitter2.x = mSprite2.x;
+        emitter2.y = mSprite2.y;
+        emitter2.start(true, 600, null, 15);
+        muertos = muertos +1;
+        playersLost();
+        deadSound = phaser.add.audio('dead');
+        deadSound.play();
+    };
+    
+    // ----- Jugador pierde la partida ----- //
+    var playersLost = function(){
+        if(muertos == 2){
+            var backgroundImage = phaser.add.image(0, 0, 'gameOver');
+            backgroundImage.scale.setTo(2,1.8);
+            
+            phaser.state.stop();
+            //Lletres que t'indiquen que fer quan s'hacaba el joc
+            var nameLabel = phaser.add.text(phaser.world.centerX, -50, 'Restart game press R', { font: '70px Geo', fill: '#FF9900' });
+            nameLabel.anchor.setTo(0.5, 0.5);
+            phaser.add.tween(nameLabel).to({y: 80}, 1000).easing(Phaser.Easing.Bounce.Out).start();
+            
+            //El joc és reseteja
+            var rKey = phaser.input.keyboard.addKey(Phaser.Keyboard.R);
+		    rKey.onDown.addOnce(reset, this);
+        }
+    };
+    
+    var reset = function(){
+        phaser.state.start('menu');
     };
     
     
@@ -112,6 +144,11 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         emitter.setYSpeed(-150, 150);
         emitter.setXSpeed(-150, 150);
         emitter.gravity = 0;
+        
+        emitter2.makeParticles('pixel2');
+        emitter2.setYSpeed(-150, 150);
+        emitter2.setXSpeed(-150, 150);
+        emitter2.gravity = 0;
         
         //createEnemies();
         //createEnemies2();

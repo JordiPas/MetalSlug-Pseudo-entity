@@ -14,3 +14,20 @@ p {
     font-family: "Impact, Charcoal, sans-serif";
     font-size: 20px;
 }
+
+
+.title
+{
+    text-shadow:4px 3px 2px rgba(0,0,0,1);
+    font-weight:bold;
+    text-decoration:underline overline;
+    font-variant:small-caps;
+    color:#F59314;
+    background-color:#FFFFFF;
+    letter-spacing:2pt;
+    word-spacing:2pt;
+    font-size:90px;
+    text-align:center;
+    font-family:impact, sans-serif;
+    line-height:1;
+}

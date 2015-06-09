@@ -10,8 +10,11 @@ var phaser = new Phaser.Game(
             //phaser.stage.backgroundColor = "#99cc33";
             phaser.load.image('instruccions', 'assets/instruccions.png');
             phaser.load.image('backgroundMenu', 'assets/metalico.jpg');
+            phaser.load.image('victory', 'assets/victory.jpg');
+            phaser.load.image('gameOver', 'assets/gameOver.jpg');
             phaser.load.image('enemy', 'assets/enemy.png');
             phaser.load.image('pixel', 'assets/pixel.png');
+            phaser.load.image('pixel2', 'assets/pixel2.png');
             phaser.load.image('laser', 'assets/laser.png'); //Disparar
             phaser.load.image('laser2', 'assets/laser2.png');
             phaser.load.spritesheet('player', 'assets/CorrerSlug.png', 51, 53);
@@ -20,6 +23,10 @@ var phaser = new Phaser.Game(
             phaser.load.image('background', 'assets/Casa.png');            
             phaser.load.image('Muro', 'assets/tileset.png');
             
+            // ----- Audios ----- //
+            phaser.load.audio('jump', ['assets/jump.ogg', 'assets/jump.mp3']);
+		    phaser.load.audio('coin', ['assets/coin.ogg', 'assets/coin.mp3']);
+		    phaser.load.audio('dead', ['assets/dead.ogg', 'assets/dead.mp3']);
             
             
         },
