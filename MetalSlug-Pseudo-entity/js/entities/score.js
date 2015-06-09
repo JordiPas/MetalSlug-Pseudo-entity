@@ -1,13 +1,11 @@
 var Score = function () {
     var score = 0;
-    var mText = null;
-    
+    var mText = null;    
     
     this.killEnemy = function(){
         score += 10;
         updateScore();
     };
-
     
     var updateScore = function () {
         console.log('ENTRO');

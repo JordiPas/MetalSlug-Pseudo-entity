@@ -1,9 +1,7 @@
 var Player2 = function(worldReference) {
     var mSprite2 = null;
     var mWorldReference = worldReference;
-    //var mCursor = null;
     var mListeners = [];
-    //var mLaser = null;
     
     this.update = function() {
         phaser.physics.arcade.collide(mSprite2, mWorldReference);
@@ -31,12 +29,12 @@ var Player2 = function(worldReference) {
         return mSprite2;
     };
     
-    
+    //Listener per anar escoltant
     this.registerListener = function(listener) {
         mListeners.push(listener);
     };
     
-    
+    //Aplique phsiques al player 2
     var enablePhysics = function() {
         phaser.physics.arcade.enable(mSprite2);
         mSprite2.body.bounce.y = 0.2;
@@ -44,6 +42,7 @@ var Player2 = function(worldReference) {
         mSprite2.body.collideWorldBounds = true;
     };
     
+    //---------------CONTROLS-----------------
     var onPressLeft = function() {
         mSprite2.body.velocity.x = -150;
         mSprite2.animations.play('left');

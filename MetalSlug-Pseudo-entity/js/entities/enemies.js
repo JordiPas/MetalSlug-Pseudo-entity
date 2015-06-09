@@ -81,7 +81,6 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         enemy.body.collideWorldBounds = true;
         enemy.body.velocity.x = velx;
         enemy.body.velocity.y = vely;
-        //enemy.scale.setTo(1.25, 1.5);
         enemy.anchor.setTo(0.5, 0.5);
         enemy.checkWorldBounds = true;
         
@@ -170,9 +169,6 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         emitter2.setYSpeed(-150, 150);
         emitter2.setXSpeed(-150, 150);
         emitter2.gravity = 0;
-        
-        //createEnemies();
-        //createEnemies2();
         
     })();
 };

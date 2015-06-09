@@ -3,7 +3,6 @@ var Player = function(worldReference) {
     var mWorldReference = worldReference;
     var mCursor = null;
     var mListeners = [];
-    //var mLaser = null;
     
     this.update = function() {
         phaser.physics.arcade.collide(mSprite, mWorldReference);
@@ -18,25 +17,23 @@ var Player = function(worldReference) {
         }
         else {
             onNoDirectionPressed();
-        }
-        
+        }        
         
         if (mCursor.up.isDown) {
             onPressUp();
-        }
-        
+        }        
     };
     
     this.getPhysicsReference = function() {
         return mSprite;
     };
     
-    
+    //Listener per anar escoltant
     this.registerListener = function(listener) {
         mListeners.push(listener);
     };
     
-    
+    //Aplique phsiques al player 
     var enablePhysics = function() {
         phaser.physics.arcade.enable(mSprite);
         mSprite.body.bounce.y = 0.2;
@@ -44,6 +41,7 @@ var Player = function(worldReference) {
         mSprite.body.collideWorldBounds = true;
     };
     
+    //---------------CONTROLS-----------------
     var onPressLeft = function() {
         mSprite.body.velocity.x = -150;
         mSprite.animations.play('left');

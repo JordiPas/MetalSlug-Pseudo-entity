@@ -1,3 +1,4 @@
+//Classe que crea el mon per on succeira tot el joc
 var World = function() {
     var mMapa = null;
     var mLayer = null;
@@ -10,10 +11,12 @@ var World = function() {
         phaser.add.sprite(0, 0, 'background');
     };
     
+    //Creació del tilemap, mapa on ens dira que es terra i que no
     var addTilemap = function() {
         mMapa = phaser.add.tilemap('casa');
     };
     
+    //Creacio del tileset, imatges amb les quals hem creat el tilemap
     var addTilesets = function() {
         mMapa.addTilesetImage('Muro');
     };
@@ -32,7 +35,7 @@ var World = function() {
     
     //Constructor
     (function() {
-        //Add backgroun
+        //Add background
         addBackground();
         
         //Create tilesets and tilemap

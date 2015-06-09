@@ -1,3 +1,4 @@
+//Classe que crea totes les classes
 var GameFacade = function() {
     var mSelf = this;
     var mSelf2 = this;
@@ -8,6 +9,7 @@ var GameFacade = function() {
     var mLaser = null;
     var mScore = null;
     
+    //Constructor de totes les classes, amb les referencies de les physiques com a parametre
     this.create = function() {
         enablePhysics();
         
@@ -21,25 +23,26 @@ var GameFacade = function() {
         
         mPlayer.registerListener(mSelf);
         mPlayer2.registerListener(mSelf);
-        mLaser.registerListener(mSelf);
-        //mLaser.registerListener(mEnemies);       
+        mLaser.registerListener(mSelf);   
        
     };
     
+    //funcio que va actualitzant tot el joc
     this.update = function() {
         mLaser.update();
         mEnemies.update();
         mPlayer.update();
         mPlayer2.update();
-        //mScore.updateScore();
         
     };
     
+    //funcio que fem servir per comunicar les classes dispar i enemies
     this.killEnemy = function() {
         console.log('GameMatar');
         mScore.killEnemy();
     };  
     
+    //funcio que activa les physiques a tot el sistema
     var enablePhysics = function() {
         phaser.physics.startSystem(Phaser.Physics.ARCADE);
     };
