@@ -22,6 +22,13 @@ var Score = function () {
     // ----- Players win ----- //
     
     var playersWin = function(){
+        
+        gameSound.stop();
+        youWin = phaser.add.audio('youWin');
+        youWin.loop = true;
+        youWin.play();
+        youWin.volume = 1;
+        
         var backgroundImage = phaser.add.image(0, 0, 'victory');
         backgroundImage.scale.setTo(0.95,1);
         
@@ -37,6 +44,7 @@ var Score = function () {
     
     var reset = function(){
         phaser.state.start('menu');
+        youWin.stop();
     };
     
      (function () {

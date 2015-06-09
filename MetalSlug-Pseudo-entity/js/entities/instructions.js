@@ -24,6 +24,7 @@ var instructions = function() {
     // Quan apretes la flecha el joc comença.
     var onUpKeyDown = function() {
         phaser.state.start('game');
+        menuSound.stop();
     };
     
     //Tornes al menu

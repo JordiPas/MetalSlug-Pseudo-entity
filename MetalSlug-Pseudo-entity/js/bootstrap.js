@@ -25,8 +25,13 @@ var phaser = new Phaser.Game(
             
             // ----- Audios ----- //
             phaser.load.audio('jump', ['assets/jump.ogg', 'assets/jump.mp3']);
-		    phaser.load.audio('coin', ['assets/coin.ogg', 'assets/coin.mp3']);
+		    phaser.load.audio('laser', 'assets/laser.wav');
 		    phaser.load.audio('dead', ['assets/dead.ogg', 'assets/dead.mp3']);
+            phaser.load.audio('playerDead', 'assets/playerdie.wav');
+            phaser.load.audio('menuSound', 'assets/menu.wav');
+            phaser.load.audio('gameSound', 'assets/level1.wav');
+            phaser.load.audio('youLose', 'assets/youlose.wav');
+            phaser.load.audio('youWin', 'assets/youwin.wav');
             
             
         },

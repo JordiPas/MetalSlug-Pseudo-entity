@@ -11,6 +11,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
     var emitter = phaser.add.emitter(0, 0, 15);
     var emitter2 = phaser.add.emitter(0, 0, 15);
     var mListeners = [];
+    var enemySound;
     
     var Speed = 100;
     
@@ -79,6 +80,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             emitter.y = mEnemies.y;
             emitter.start(true, 600, null, 15);
             
+            
         }else if(shoot2){
             mEnemies.kill();
         
@@ -88,6 +90,9 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             emitter2.y = mEnemies.y;
             emitter2.start(true, 600, null, 15);
         }
+        
+        enemieDead = phaser.add.audio('dead');
+        enemieDead.play();
         //mEnemies.kill();
         console.log('MatarEnemigo'); 
         
@@ -110,7 +115,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             shoot.body.velocity.x = -400;
             //laserTime = phaser.time.now + 500;
         }
-        coinSound = phaser.add.audio('coin');
+        coinSound = phaser.add.audio('laser');
         coinSound.play();
     };
     
@@ -124,7 +129,7 @@ var Disparar = function (worldReference, playerReference, player2Reference, enem
             shoot2.body.velocity.x = -400;
             //laserTime = phaser.time.now + 500;
         }
-        coinSound = phaser.add.audio('coin');
+        coinSound = phaser.add.audio('laser');
         coinSound.play();
     };
     

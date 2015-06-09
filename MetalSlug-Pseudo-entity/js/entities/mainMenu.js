@@ -1,10 +1,18 @@
-var MainMenu = function() {    
+var MainMenu = function() { 
+   
+    menuSound = phaser.add.audio('menuSound');
+    menuSound.loop = true;
+    menuSound.play();
+    menuSound.volume = 1;    
+    
     var addBackground = function() {
         var backgroundImage = phaser.add.image(0, 0, 'backgroundMenu');  
         backgroundImage.scale.setTo(0.5,0.6);
     };
     
     // ----- Menu principal ----- //
+    
+    
     var createIntroText = function() {
         var nameLabel = phaser.add.text(phaser.world.centerX, -50, 'Metal Slug ', { font: '70px Geo', fill: '#FF9900' });
 		nameLabel.anchor.setTo(0.5, 0.5);
@@ -44,7 +52,15 @@ var MainMenu = function() {
         
     // Quan apretes la flecha el joc comença.
     var onUpKeyDown = function() {
+        
         phaser.state.start('game');
+        menuSound.stop();
+        
+        gameSound = phaser.add.audio('gameSound');
+        gameSound.loop = true;
+        gameSound.play();
+        gameSound.volume = 1;
+         
     };
     
     // ----- Instruccions ----- //

@@ -96,7 +96,7 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         emitter.start(true, 600, null, 15);
         muertos = muertos +1;
         playersLost();
-        deadSound = phaser.add.audio('dead');
+        deadSound = phaser.add.audio('playerDead');
         deadSound.play();
     };
     
@@ -109,17 +109,23 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
         emitter2.start(true, 600, null, 15);
         muertos = muertos +1;
         playersLost();
-        deadSound = phaser.add.audio('dead');
+        deadSound = phaser.add.audio('playerDead');
         deadSound.play();
     };
     
     // ----- Jugador pierde la partida ----- //
     var playersLost = function(){
         if(muertos == 2){
+            
+            gameSound.stop();
+            youLose = phaser.add.audio('youLose');
+            youLose.loop = true;
+            youLose.play();
+            youLose.volume = 1;
+            
             var backgroundImage = phaser.add.image(0, 0, 'gameOver');
             backgroundImage.scale.setTo(2,1.8);
             
-            phaser.state.stop();
             //Lletres que t'indiquen que fer quan s'hacaba el joc
             var nameLabel = phaser.add.text(phaser.world.centerX, -50, 'Restart game press R', { font: '70px Geo', fill: '#FF9900' });
             nameLabel.anchor.setTo(0.5, 0.5);
@@ -133,6 +139,7 @@ var Enemies = function(worldReference, playerReference, player2Reference) {
     
     var reset = function(){
         phaser.state.start('menu');
+        youLose.stop();
     };
     
     
